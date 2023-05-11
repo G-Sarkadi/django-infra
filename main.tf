@@ -30,6 +30,8 @@ resource "azurerm_linux_web_app" "django_images_test" {
     "ALLOWED_HOSTS"        = "localhost 127.0.0.1 [::1] ${var.app_name}.azurewebsites.net"
     "CSRF_TRUSTED_ORIGINS" = "https://${var.app_name}.azurewebsites.net}"
     "SECURE_SSL_REDIRECT"  = 0
+    "AZURE_ACCOUNT_NAME"   = ""
+    "AZURE_ACCOUNT_KEY"    = ""
   }
 
   storage_account {
