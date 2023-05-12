@@ -1,5 +1,5 @@
 resource "azurerm_service_plan" "service_plan" {
-  name                = "service_plan"
+  name                = "service_plan-${random_integer.ri.result}"
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
   os_type             = "Linux"
@@ -15,23 +15,24 @@ resource "azurerm_linux_web_app" "django_images_test" {
 
   site_config {
     application_stack {
-      python_version = 3.11
+      python_version = var.python_version
     }
   }
 
   # Add environmetal variables to the application
   app_settings = {
-    "DBNAME"               = ""
-    "DBHOST"               = ""
-    "DBUSER"               = ""
-    "DBPASS"               = ""
+    "DBNAME" = azurerm_postgresql_flexible_server.this.name
+    "DBHOST" = "${azurerm_postgresql_flexible_server.this.name}.postgres.database.azure.com"
+    "DBUSER" = var.DB_ADMIN_USER
+    "DBPASS" = var.DB_ADMIN_PASSWORD
+    # TODO Set debug to 0
     "DEBUG"                = 1
     "SECRET_KEY"           = var.SECRET_KEY
     "ALLOWED_HOSTS"        = "localhost 127.0.0.1 [::1] ${var.app_name}.azurewebsites.net"
-    "CSRF_TRUSTED_ORIGINS" = "https://${var.app_name}.azurewebsites.net}"
+    "CSRF_TRUSTED_ORIGINS" = "https://${var.app_name}.azurewebsites.net"
     "SECURE_SSL_REDIRECT"  = 0
-    "AZURE_ACCOUNT_NAME"   = ""
-    "AZURE_ACCOUNT_KEY"    = ""
+    "AZURE_ACCOUNT_NAME"   = azurerm_storage_account.this.name
+    "AZURE_ACCOUNT_KEY"    = azurerm_storage_account.this.primary_access_key
   }
 
   storage_account {

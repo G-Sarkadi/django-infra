@@ -7,7 +7,7 @@ variable "app_name" {
 variable "app_repo" {
   description = "The GitHub URL for the application repository"
   type        = string
-  default     = "https://github.com/G-Sarkadi/django-test"
+  default     = "https://github.com/G-Sarkadi/django-image-app"
 }
 
 variable "location" {
@@ -20,4 +20,22 @@ variable "SECRET_KEY" {
   description = "Secret key for the application"
   type        = string
   sensitive   = true
+}
+
+variable "DB_ADMIN_USER" {
+  description = "PostgresQL database admin user name"
+  type        = string
+  sensitive   = true
+}
+
+variable "DB_ADMIN_PASSWORD" {
+  description = "PostgresQL database admin password"
+  type        = string
+  sensitive   = true
+}
+
+variable "python_version" {
+  description = "Python version number"
+  type        = number
+  default     = 3.11
 }
