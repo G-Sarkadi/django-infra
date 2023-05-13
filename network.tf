@@ -38,10 +38,8 @@ resource "azurerm_app_service_connection" "example" {
   app_service_id     = azurerm_linux_web_app.django_images_test.id
   target_resource_id = azurerm_postgresql_flexible_server_database.django_db.id
   client_type        = "python"
+
   authentication {
-    type   = "secret"
-    name   = var.DB_ADMIN_USER
-    secret = var.DB_ADMIN_PASSWORD
+    type = "systemAssignedIdentity"
   }
 }
-
