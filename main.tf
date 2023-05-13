@@ -25,6 +25,7 @@ resource "azurerm_linux_web_app" "django_images_test" {
     "DBHOST" = "${azurerm_postgresql_flexible_server.this.name}.postgres.database.azure.com"
     "DBUSER" = var.DB_ADMIN_USER
     "DBPASS" = var.DB_ADMIN_PASSWORD
+    "AZURE_POSTGRESQL_CONNECTIONSTRING" = "dbname=${azurerm_postgresql_flexible_server.this.name} host=${azurerm_postgresql_flexible_server.this.name}.postgres.database.azure.com port=5432 sslmode=require user=${var.DB_ADMIN_USER} password=${var.DB_ADMIN_PASSWORD}"
     # TODO Set debug to 0
     "DEBUG"                = 1
     "SECRET_KEY"           = var.SECRET_KEY
