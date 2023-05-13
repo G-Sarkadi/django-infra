@@ -32,3 +32,16 @@ resource "azurerm_private_dns_zone_virtual_network_link" "example" {
   virtual_network_id    = azurerm_virtual_network.example.id
   resource_group_name   = azurerm_resource_group.this.name
 }
+
+resource "azurerm_app_service_connection" "example" {
+  name               = "example_serviceconnector"
+  app_service_id     = azurerm_linux_web_app.django_images_test.id
+  target_resource_id = azurerm_postgresql_flexible_server_database.django_db.id
+  client_type        = "python"
+  authentication {
+    type   = "secret"
+    name   = var.DB_ADMIN_USER
+    secret = var.DB_ADMIN_PASSWORD
+  }
+}
+

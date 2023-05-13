@@ -13,11 +13,26 @@ resource "azurerm_postgresql_flexible_server" "this" {
   (https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server),
   but it causes an error in the creation of the resource.
   */
-#   zone                   = "1"
+  #   zone                   = "1"
 
   storage_mb = 32768
 
   sku_name   = "GP_Standard_D4s_v3"
   depends_on = [azurerm_private_dns_zone_virtual_network_link.example]
 
+}
+
+resource "azurerm_postgresql_flexible_server_database" "django_db" {
+  name      = var.DB_NAME
+  server_id = azurerm_postgresql_flexible_server.this.id
+  collation = "en_US.utf8"
+  charset   = "utf8"
+}
+
+
+resource "azurerm_postgresql_flexible_server_firewall_rule" "example" {
+  name             = "example-fw"
+  server_id        = azurerm_postgresql_flexible_server.this.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
 }

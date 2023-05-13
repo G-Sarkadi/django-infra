@@ -34,6 +34,12 @@ variable "DB_ADMIN_PASSWORD" {
   sensitive   = true
 }
 
+variable "DB_NAME" {
+  description = "PostgresQL database name"
+  type        = string
+  default     = "django-images"
+}
+
 variable "python_version" {
   description = "Python version number"
   type        = number
