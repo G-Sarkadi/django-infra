@@ -43,7 +43,13 @@ resource "azurerm_postgresql_flexible_server" "this" {
   private_dns_zone_id    = azurerm_private_dns_zone.example.id
   administrator_login    = var.DB_ADMIN_USER
   administrator_password = var.DB_ADMIN_PASSWORD
-  zone                   = "1"
+
+  /*
+  This 'zone' attribute comes from the official documentation example
+  (https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_flexible_server),
+  but it causes an error in the creation of the resource.
+  */
+#   zone                   = "1"
 
   storage_mb = 32768
 

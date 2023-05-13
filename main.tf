@@ -38,7 +38,7 @@ resource "azurerm_linux_web_app" "django_images_test" {
   storage_account {
     account_name = azurerm_storage_account.this.name
     access_key   = azurerm_storage_account.this.primary_access_key
-    name         = "hello"
+    name         = "django-storage-account"
     share_name   = "static"
     type         = "AzureBlob"
   }
