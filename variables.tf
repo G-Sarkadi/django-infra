@@ -26,13 +26,13 @@ variable "service_plan_sku" {
 variable "app_repo" {
   description = "The public GitHub URL for the application repository"
   type        = string
-  default     = "https://github.com/G-Sarkadi/django-image-app"
+  default     = "https://github.com/G-Sarkadi/django-images"
 }
 
 variable "app_branch" {
   description = "The branch of the application repository"
   type        = string
-  default     = "main"
+  default     = "master"
 }
 
 variable "location" {

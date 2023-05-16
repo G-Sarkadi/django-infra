@@ -7,7 +7,7 @@ resource "azurerm_virtual_network" "this" {
   address_space       = ["10.0.0.0/16"]
 }
 
-resource "azurerm_subnet" "this" {
+resource "azurerm_subnet" "database" {
   name                 = "postgres-database-sn"
   resource_group_name  = azurerm_resource_group.this.name
   virtual_network_name = azurerm_virtual_network.this.name
@@ -23,6 +23,23 @@ resource "azurerm_subnet" "this" {
     }
   }
 }
+
+resource "azurerm_subnet" "application" {
+  name                 = "django-app-sn"
+  resource_group_name  = azurerm_resource_group.this.name
+  virtual_network_name = azurerm_virtual_network.this.name
+  address_prefixes     = ["10.0.1.0/24"]
+
+  delegation {
+    name = "example-delegation"
+
+    service_delegation {
+      name    = "Microsoft.Web/serverFarms"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+    }
+  }
+}
+
 resource "azurerm_private_dns_zone" "this" {
   name                = "private.postgres.database.azure.com"
   resource_group_name = azurerm_resource_group.this.name
@@ -44,4 +61,9 @@ resource "azurerm_app_service_connection" "this" {
   authentication {
     type = "systemAssignedIdentity"
   }
+}
+
+resource "azurerm_app_service_virtual_network_swift_connection" "example" {
+  app_service_id = azurerm_linux_web_app.django_images.id
+  subnet_id      = azurerm_subnet.application.id
 }
