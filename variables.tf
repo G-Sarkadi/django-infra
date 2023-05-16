@@ -1,4 +1,14 @@
-# Application variables
+# Generic variables
+variable "location" {
+  description = "Azure region to deploy the application"
+  type        = string
+  default     = "West Europe"
+}
+
+
+
+
+# Django app variables
 variable "app_name" {
   description = "Application name"
   type        = string
@@ -35,17 +45,15 @@ variable "app_branch" {
   default     = "master"
 }
 
-variable "location" {
-  description = "Azure region to deploy the application"
-  type        = string
-  default     = "West Europe"
-}
-
 variable "SECRET_KEY" {
   description = "Secret key for the application"
   type        = string
   sensitive   = true
 }
+
+
+
+
 
 # PostgreSQL server and database variables
 variable "postgresql_version" {
@@ -84,7 +92,11 @@ variable "DB_NAME" {
   default     = "django-images"
 }
 
-# Data storage variables
+
+
+
+
+# Blob storage variables
 variable "storage_account_name" {
   description = "Name of the storage account"
   type        = string

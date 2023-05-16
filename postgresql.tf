@@ -1,4 +1,4 @@
-# Resources to create a PostgresQl flexible server and database
+# Resources to create a PostgreSQL flexible server and database
 
 resource "azurerm_postgresql_flexible_server" "this" {
   name                   = "${var.app_name}-server-${random_integer.ri.result}"

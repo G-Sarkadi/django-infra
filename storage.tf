@@ -1,4 +1,4 @@
-# Resources for permanent data storage
+# Resources to create blob storage to store images and static files
 
 resource "azurerm_storage_account" "this" {
   name                     = var.storage_account_name

@@ -63,7 +63,7 @@ resource "azurerm_app_service_connection" "this" {
   }
 }
 
-resource "azurerm_app_service_virtual_network_swift_connection" "example" {
+resource "azurerm_app_service_virtual_network_swift_connection" "this" {
   app_service_id = azurerm_linux_web_app.django_images.id
   subnet_id      = azurerm_subnet.application.id
 }

@@ -19,7 +19,6 @@ resource "random_integer" "ri" {
   max = 99999
 }
 
-# Create the resource group
 resource "azurerm_resource_group" "this" {
   name     = "django-images-group-${random_integer.ri.result}"
   location = var.location

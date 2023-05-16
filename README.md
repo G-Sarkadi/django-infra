@@ -24,7 +24,7 @@ Terraform will create multiple resources and sets them up:
 - Creates a persistent blob storage to store images and static files
 - Sets up networking and communication between the resources
   
-The creation of the resources takes approximately 5 minutes. After that, the deployed application needs an additional 1-2 minutes to pull and install its dependencies. When it's ready, the database of the application needs to be migrated to the newly created PostgreSQL database. For this, the user needs to establish an SSH connection to the web app and type some commands to execute the migration. On the Azure console, navigate to the created App Service, select the Development Tools/SSH tab from the sidebar. 
+The creation of the resources takes approximately 5 minutes. After that, the deployed application needs a couple of minutes to pull and install its dependencies. When it's ready, the database of the application needs to be migrated to the newly created PostgreSQL database. For this, the user needs to establish an SSH connection to the web app to type the necessary commands to execute the migration. On the Azure console, navigate to the created App Service, select the Development Tools/SSH tab from the sidebar. 
 Type in these commands:
 
 ```sh
