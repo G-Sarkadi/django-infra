@@ -1,6 +1,6 @@
 ## What is this project?
 This is a Terraform Infrastructure-as-Code implementation of the following tutorial: https://testdriven.io/blog/django-azure-app-service/  
-The purpose of the project is to replicate the steps of the tutorial (without the last, custom domain step) and deploy a Django web application with a PostgreSQL database to Azure with minimal required user interaction.
+The purpose of the project is to replicate the steps of the tutorial (without the last, custom domain step) and deploy a Django web application with a PostgreSQL database to Azure with minimal required user interaction. You can check the code of the application here: https://github.com/G-Sarkadi/django-images
 
 ## How to use this project?
 Prerequisites: installed Terraform CLI, Azure account, setup Azure service principal for Terraform.  
